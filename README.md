@@ -1,76 +1,120 @@
-# Lab CRUD en Laravel — Products
+# Laboratorio del CRUD en Laravel
 
-Este paquete contiene **todo el código mínimo** para completar el laboratorio de CRUD de `products`.
+## 🧩 Descripción
+Este laboratorio demuestra la implementación completa de un **CRUD (Create, Read, Update, Delete)** en Laravel 10.  
+El proyecto permite gestionar productos con campos **descripción**, **precio** y **stock**, utilizando **Bootstrap 5** para la interfaz y **MySQL** como base de datos.
 
-## Requisitos
-- PHP 8.2+
-- Composer
-- MySQL/MariaDB (o SQLite)
-- Node (opcional, solo si usas Vite/Tailwind; para este lab usamos Bootstrap CDN)
+---
 
-## Pasos (resumen rápido del laboratorio)
-1. Crear un proyecto nuevo (o usar uno existente):
+## ⚙️ Tecnologías utilizadas
+- **Laravel 10**
+- **PHP 8.1+**
+- **MySQL / MariaDB**
+- **Bootstrap 5 (CDN)**
+- **Composer**
+
+---
+
+## 🚀 Instrucciones de instalación
+
+1. Clona el repositorio:
    ```bash
-   laravel new crud_rapido
-   # o
-   composer create-project laravel/laravel crud_rapido
+   git clone https://github.com/britval/Laboratorio_del_Crud.git
+   cd Laboratorio_del_Crud
    ```
 
-2. Copiar el contenido de este paquete dentro del proyecto (respetando rutas). **Sobrescribe** los archivos `AppServiceProvider.php`, `routes/web.php`, etc.
-
-3. Configurar `.env` (credenciales de BD) y **verificar conexión**.
-
-4. (Opcional pero recomendado ante índices antiguos) En `App\Providers\AppServiceProvider.php` ya está:
-   ```php
-   Schema::defaultStringLength(191);
+2. Instala dependencias:
+   ```bash
+   composer install
    ```
 
-5. Limpiar cachés (si aplica):
-   ```bash
-   php artisan config:clear
-   php artisan cache:clear
-   php artisan config:cache
+3. Crea tu archivo `.env` y configura la conexión a base de datos:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=crud_rapido
+   DB_USERNAME=root
+   DB_PASSWORD=
    ```
 
-6. Correr migraciones:
+4. Genera la clave y ejecuta migraciones:
    ```bash
+   php artisan key:generate
    php artisan migrate
-   # si quieres un reset limpio:
-   # php artisan migrate:fresh
    ```
 
-7. Levantar servidor:
+5. Levanta el servidor:
    ```bash
    php artisan serve
    ```
+   Luego abre [http://127.0.0.1:8000/products](http://127.0.0.1:8000/products)
 
-8. Abrir en el navegador: http://127.0.0.1:8000  (redirige a `/products`).
+---
 
-## ¿Qué incluye?
-- **Modelo** `App/Models/Product.php` con `$fillable` (`description`, `price`, `stock`).
-- **Migración** `create_products_table` con columnas `id`, `description`, `price (8,2)`, `stock`, `timestamps`.
-- **Controlador** `ProductController` tipo resource con validaciones y paginación.
-- **Vistas Blade** (`index`, `create`, `edit`, `show`) en `resources/views/products/`.
-- **Rutas** resource en `routes/web.php`.
-- **Layout** Bootstrap 5 (CDN) en `resources/views/layouts/app.blade.php`.
+## 🧱 Estructura principal del proyecto
 
-## Notas del laboratorio
-- Rutas generadas por `Route::resource('products', ProductController::class)`.
-- Si decides usar el generador `ibex/crud-generator` (como en la guía) los pasos serían:
-  ```bash
-  composer require ibex/crud-generator --dev
-  php artisan vendor:publish --tag=crud
-  php artisan make:crud products
-  ```
-  *(Este paquete no es obligatorio para esta solución; ya te dejo el CRUD resuelto manualmente.)*
+```
+app/
+ ├── Http/Controllers/ProductController.php
+ ├── Models/Product.php
+database/
+ └── migrations/2025_11_05_create_products_table.php
+resources/
+ ├── views/layouts/app.blade.php
+ └── views/products/
+     ├── index.blade.php
+     ├── create.blade.php
+     ├── edit.blade.php
+     └── show.blade.php
+routes/
+ └── web.php
+```
 
-## Troubleshooting
-- **Unable to locate file vite manifest / app.scss**: como usamos Bootstrap por CDN, no necesitas `vite`. Si tu layout intenta cargar `@vite`, quítalo o ejecuta:
-  ```bash
-  npm install
-  npm run build
-  ```
-- **Errores de migración por longitud de índice**: ya está `Schema::defaultStringLength(191)` en el provider.
-- **Paginación**: ajusta `paginate(10)` según necesidad.
+---
 
-¡Listo!
+## 🧮 Funcionalidades implementadas
+
+- **Listar productos** con paginación  
+- **Crear** nuevos productos con validación de campos  
+- **Editar** y **actualizar** registros existentes  
+- **Eliminar** productos con confirmación  
+- **Mensajes flash** de éxito en cada acción  
+
+---
+
+## 🖼️ Evidencias del funcionamiento
+
+### Formulario de creación
+![Formulario de creación](images/crear_producto.png)
+
+### Listado de productos
+![Listado de productos](images/listado_productos.png)
+
+---
+
+## 🧠 Aprendizajes clave
+
+- Uso de controladores tipo *Resource Controller* (`php artisan make:controller --resource`)
+- Definición de rutas RESTful mediante `Route::resource()`
+- Validación de datos con `Request->validate()`
+- Implementación de *flash messages* en vistas Blade
+- Buenas prácticas en asignación masiva (`$fillable`)
+
+---
+
+## 👩‍💻 Autora
+**Britney Valoy Becker**  
+Estudiante de Ingeniería en Sistemas Computacionales — UTP  
+GitHub: [@britval](https://github.com/britval)
+
+---
+
+## 🏁 Resultado Final
+La aplicación se ejecuta correctamente mostrando la interfaz de gestión de productos:
+
+- ✅ Inserción exitosa  
+- ✅ Listado paginado  
+- ✅ Edición y eliminación funcional  
+- ✅ Conexión estable a MySQL  
+- ✅ Interfaz limpia y responsiva con Bootstrap

@@ -105,16 +105,3 @@ routes/
 
 ## 👩‍💻 Autora
 **Britney Valoy Becker**  
-Estudiante de Ingeniería en Sistemas Computacionales — UTP  
-GitHub: [@britval](https://github.com/britval)
-
----
-
-## 🏁 Resultado Final
-La aplicación se ejecuta correctamente mostrando la interfaz de gestión de productos:
-
-- ✅ Inserción exitosa  
-- ✅ Listado paginado  
-- ✅ Edición y eliminación funcional  
-- ✅ Conexión estable a MySQL  
-- ✅ Interfaz limpia y responsiva con Bootstrap
